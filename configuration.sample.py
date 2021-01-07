@@ -1,5 +1,8 @@
-user = 'bartlomiej.kluza.ctr@sabre.com'
+user = 'mail@domain.com'
 password = ''
-workspace = 'Sabre Production Workspace'
+workspace = 'Workspace'
 
-iteration = 'S26'
+iteration = 'Iteration name'
+projects = [
+['projectName', 'project URL number']]
+

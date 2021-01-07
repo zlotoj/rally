@@ -7,9 +7,7 @@ DRIVER_PATH = 'c:\\chromedriver.exe'
 options = Options()
 options.headless = True
 options.add_argument("--window-size=1920,1200")
-url = 'https://rally1.rallydev.com/#/%s/custom/478931066124'
-# url = 'https://rally1.rallydev.com/#/%s/reports'
-# https://rally1.rallydev.com/#/112919413276d/custom/478931066124
+url = 'https://rally1.rallydev.com/#/%s/custom/478931066124' # template link to copy of dashboard
 
 driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 driver.get('https://rally1.rallydev.com')
@@ -21,15 +19,7 @@ elem = driver.find_element_by_name("j_password")
 elem.clear()
 elem.send_keys(configuration.password)
 driver.find_element_by_id("login-button").click()
-#successfully entered URL_2
 
-# driver.get(url % ('112919413276d'))
-# xpath='//*/div[1]/a/img'
-# try :
-#     time.sleep(7)
-#     driver.find_element_by_xpath(xpath).click()
-# except:
-#     pass
 def getCycleTime(project) :
     driver.get(url % (project))
     tryCount=0
@@ -43,5 +33,4 @@ def getCycleTime(project) :
             tryCount+=1
     return str(cycleTime)
 
-#getCycleTime()
-#driver.quit()
+#driver.quit() # Done in rally.py
