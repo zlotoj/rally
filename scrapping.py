@@ -8,19 +8,20 @@ options = Options()
 options.headless = True
 options.add_argument("--window-size=1920,1200")
 url = 'https://rally1.rallydev.com/#/%s/custom/478931066124' # template link to copy of dashboard
-
 driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
-driver.get('https://rally1.rallydev.com')
-elem = driver.find_element_by_name("j_username")
-elem.clear()
-elem.send_keys(configuration.user)
 
-elem = driver.find_element_by_name("j_password")
-elem.clear()
-elem.send_keys(configuration.password)
-driver.find_element_by_id("login-button").click()
+def init():
+    driver.get('https://rally1.rallydev.com')
+    elem = driver.find_element_by_name("j_username")
+    elem.clear()
+    elem.send_keys(configuration.user)
 
-def getCycleTime(project) :
+    elem = driver.find_element_by_name("j_password")
+    elem.clear()
+    elem.send_keys(configuration.password)
+    driver.find_element_by_id("login-button").click()
+
+def getCycleTime(project, driver) :
     driver.get(url % (project))
     tryCount=0
     cycleTime=0
@@ -33,4 +34,8 @@ def getCycleTime(project) :
             tryCount+=1
     return str(cycleTime)
 
-#driver.quit() # Done in rally.py
+init()
+
+if __name__ == "__main__":
+    getCycleTime('112919413276d', driver)
+    driver.quit()  # Done in rally.py
