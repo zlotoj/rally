@@ -22,11 +22,18 @@ def takeScreenshot(name, driver):
     screenshot = driver.save_screenshot('screenshot.png')
     screenshot=Image.open('screenshot.png')
 
-    (left, upper, right, lower) = (712, 224, 990, 298)
+    (left, upper, right, lower) = (712, 224, 996, 298)
     im_crop = screenshot.crop((left, upper, right, lower))
+
+    boxPart = (250, 0, 278, 74)
+    part = im_crop.crop(boxPart)
+    result = im_crop.copy()
+    im_crop.paste(part, (120, 0))
+    im_crop=im_crop.crop((0,0,146,74))
+
     im_crop.save('statsData\\'+name+'_cycleTimeTable.png')
 
-    (left, upper, right, lower) = (335, 200, 1570, 950)
+    (left, upper, right, lower) = ((335, 200, 1570, 950))
     im_crop = screenshot.crop((left, upper, right, lower))
     draw=ImageDraw.Draw(im_crop)
     font = ImageFont.truetype("arial.ttf", 16)
@@ -34,7 +41,7 @@ def takeScreenshot(name, driver):
     im_crop.save('statsData\\'+name+'_cycleTimeGraph.png')
 
 if __name__ == "__main__":
-    scrapping.init()
+    # scrapping.init()
 
     url = 'https://rally1.rallydev.com/#/%s/custom/478931066124'  # template link to copy of dashboard
 

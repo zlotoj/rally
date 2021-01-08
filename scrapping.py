@@ -5,7 +5,7 @@ import configuration
 
 DRIVER_PATH = 'c:\\chromedriver.exe'
 options = Options()
-options.headless = True
+#options.headless = True
 options.add_argument("--window-size=1920,1200")
 url = 'https://rally1.rallydev.com/#/%s/custom/478931066124' # template link to copy of dashboard
 driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
